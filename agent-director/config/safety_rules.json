@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "default_action": "deny",
+  "max_changed_files": 10,
+  "max_changed_lines": 500,
+  "protected_segments": [".git", ".aws", ".ssh", ".codex", ".agents"],
+  "protected_name_patterns": [".env", ".env.*", "*.pem", "*.key"],
+  "protected_repo_paths": ["agent-director/config/safety_rules.json", "agent-director/config/config.example.yaml", ".github/workflows/**"],
+  "deny_absolute_paths": true,
+  "deny_parent_traversal": true,
+  "deny_symlinks_and_reparse_points": true,
+  "deny_submodules": true,
+  "deny_binary_changes": true,
+  "deny_network_by_default": true,
+  "command_allowlist": [],
+  "require_human_merge_approval": true
+}

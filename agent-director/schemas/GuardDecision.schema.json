@@ -1,0 +1,39 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "allowed": {
+      "title": "Allowed",
+      "type": "boolean"
+    },
+    "violations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Violations",
+      "type": "array"
+    },
+    "changed_files": {
+      "minimum": 0,
+      "title": "Changed Files",
+      "type": "integer"
+    },
+    "changed_lines": {
+      "minimum": 0,
+      "title": "Changed Lines",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "allowed",
+    "changed_files",
+    "changed_lines"
+  ],
+  "title": "GuardDecision",
+  "type": "object"
+}

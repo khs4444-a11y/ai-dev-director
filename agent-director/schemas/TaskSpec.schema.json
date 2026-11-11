@@ -1,0 +1,118 @@
+{
+  "$defs": {
+    "CommandSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "argv": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Argv",
+          "type": "array"
+        },
+        "timeout_seconds": {
+          "default": 120,
+          "maximum": 3600,
+          "minimum": 1,
+          "title": "Timeout Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "argv"
+      ],
+      "title": "CommandSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "task_id": {
+      "format": "uuid",
+      "title": "Task Id",
+      "type": "string"
+    },
+    "objective": {
+      "minLength": 1,
+      "title": "Objective",
+      "type": "string"
+    },
+    "repository": {
+      "minLength": 1,
+      "title": "Repository",
+      "type": "string"
+    },
+    "base_commit": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "title": "Base Commit",
+      "type": "string"
+    },
+    "allowed_paths": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Allowed Paths",
+      "type": "array"
+    },
+    "acceptance_criteria": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Acceptance Criteria",
+      "type": "array"
+    },
+    "test_commands": {
+      "items": {
+        "$ref": "#/$defs/CommandSpec"
+      },
+      "minItems": 1,
+      "title": "Test Commands",
+      "type": "array"
+    },
+    "max_changed_files": {
+      "default": 10,
+      "minimum": 0,
+      "title": "Max Changed Files",
+      "type": "integer"
+    },
+    "max_changed_lines": {
+      "default": 500,
+      "minimum": 0,
+      "title": "Max Changed Lines",
+      "type": "integer"
+    },
+    "max_attempts": {
+      "default": 3,
+      "maximum": 10,
+      "minimum": 1,
+      "title": "Max Attempts",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "task_id",
+    "objective",
+    "repository",
+    "base_commit",
+    "allowed_paths",
+    "acceptance_criteria",
+    "test_commands"
+  ],
+  "title": "TaskSpec",
+  "type": "object"
+}

@@ -1,5 +1,7 @@
 # AI DEV DIRECTOR
 
+> 새 설계 및 개발 준비 패키지: [agent-director/README.md](agent-director/README.md). 기존 실행 코드와 독립된 아키텍처·계약·5단계 로드맵입니다.
+
 **세 개의 AI 코딩 CLI를 한 회사처럼 돌려, 목표 한 줄을 검증된 코드로 바꾸는 로컬 개발 감독관.**
 A local orchestrator that runs three subscription AI CLIs (Claude Code, OpenAI Codex, Google Antigravity) as
 HEAD / BUILDER / REVIEWER, and turns a one-line goal into tested, independently reviewed code — without a single

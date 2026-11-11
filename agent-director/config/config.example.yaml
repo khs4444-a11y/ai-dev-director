@@ -1,0 +1,33 @@
+# Design template only. No runtime currently consumes this configuration.
+schema_version: '1.0'
+# Resolve these paths relative to the agent-director project directory.
+repository: ..
+worktree_root: ../../.agent-worktrees
+artifact_root: ../../.agent-artifacts
+providers:
+  codex: {executable: codex, enabled: true, model: null}
+  claude: {executable: claude, enabled: true, model: null}
+  gemini: {executable: gemini, enabled: true, model: null}
+  antigravity: {executable: null, enabled: false, model: null}
+# Actual executable/flags/model availability must be confirmed by adapter probe.
+roles:
+  planner: {primary: codex, fallback: [claude, gemini]}
+  builder: {primary: claude, fallback: [gemini, codex]}
+  reviewer: {primary: gemini, fallback: [codex, claude]}
+timeouts:
+  invocation_seconds: 300
+  idle_seconds: 90
+  terminate_grace_seconds: 5
+  task_seconds: 1800
+limits:
+  max_attempts_per_gate: 3
+  max_output_bytes: 1048576
+  max_parallel_tasks: 1
+security:
+  require_distinct_builder_reviewer_provider: true
+  require_human_merge_approval: true
+  shell: false
+  network: deny
+  environment_allowlist: [PATH, SYSTEMROOT, TEMP, TMP, LANG]
+  credential_strategy: explicit_provider_broker
+  safety_rules: config/safety_rules.json
